@@ -1,0 +1,17 @@
+﻿  deck.cpp
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(15,21): warning C4267:  '=': conversion from 'size_t' to '_Ty1', possible loss of data
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(15,21): warning C4267:         with
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(15,21): warning C4267:         [
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(15,21): warning C4267:             _Ty1=int
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(15,21): warning C4267:         ]
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(19,23): warning C4267:  '=': conversion from 'size_t' to '_Ty2', possible loss of data
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(19,23): warning C4267:         with
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(19,23): warning C4267:         [
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(19,23): warning C4267:             _Ty2=int
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(19,23): warning C4267:         ]
+  main.cpp
+C:\Users\w9036922\Source\repos\Cards\Cards\deck.cpp(28,33): warning C4267:  'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+C:\Users\w9036922\Source\repos\Cards\Cards\main.cpp(8,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\w9036922\Source\repos\Cards\Cards\main.cpp(8,12): warning C4244: C:\Users\w9036922\Source\repos\Cards\Cards\deck.hpp(32) : error C4716: 'operator<<': must return a value
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(429,5): error MSB6006: "CL.exe" exited with code 2.
