@@ -4,6 +4,7 @@
 
 Deck::Deck() {
 	Build();
+	total_playing_cards = deck.size();
 }
 
 //builds the deck of cards by assigning the suits and the faces
@@ -17,7 +18,7 @@ void Deck::Build() {
 		for (size_t j = 1; j < 5; j++)
 		{
 			faceSuit.second = j;
-			theDeck.push_back(faceSuit);
+			deck.push_back(faceSuit);
 		}
 	}
 }
@@ -25,22 +26,22 @@ void Deck::Build() {
 //shuffles the cards using the Fisher-Yates Shuffle algorithm 
 //https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 void Deck::Shuffle() {
-	for (int i = theDeck.size() - 1; i > 1; i--) {
-		int random = rand() % theDeck.size() + 1;
-		std::pair<int, int> temp = theDeck[i];
-		theDeck[i] = theDeck[random];
-		theDeck[random] = temp;
+	for (int i = deck.size() - 1; i > 1; i--) {
+		int random = rand() % deck.size() + 1;
+		std::pair<int, int> temp = deck[i];
+		deck[i] = deck[random];
+		deck[random] = temp;
 	}
 }
 
 //deals the next card form the deck
 PlayingCard Deck::Deal() {
-	if (next_card_to_deal > theDeck.size() - 1) {
+	if (next_card_to_deal > deck.size() - 1) {
 		std::cout << "DECK HAS BEEN FULLY DEALT";
 		return PlayingCard(0, 0);
 	}
 	else {
-		std::pair<int, int> card = theDeck[next_card_to_deal];
+		std::pair<int, int> card = deck[next_card_to_deal];
 		next_card_to_deal += 1;
 		return PlayingCard(card.first, card.second);
 	}

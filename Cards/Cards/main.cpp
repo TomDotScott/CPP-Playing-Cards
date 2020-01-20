@@ -8,12 +8,12 @@ int main()
 	srand(time(NULL));
 
 	//create the deck
-	Deck theDeck;
+	Deck deck;
 	//output standard deck
-	std::cout << theDeck << std::endl;
+	std::cout << deck << std::endl;
 	//shuffle the deck
-	theDeck.Shuffle();
+	deck.Shuffle();
 	//output shuffled deck
 
-	std::cout << theDeck << std::endl;
+	std::cout << deck << std::endl;
 }

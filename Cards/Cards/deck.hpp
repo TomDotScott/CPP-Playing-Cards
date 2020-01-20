@@ -1,17 +1,14 @@
 #pragma once
-
 #include "playing_card.hpp"
 #include <vector>
 #include <utility>
 #include <iostream>
 
-
-
 class Deck {
 private:
 	int total_playing_cards;
 	int next_card_to_deal = 0;
-	std::vector<std::pair<int, int>> theDeck;
+	std::vector<std::pair<int, int>> deck;
 
 public:
 	void Build();
@@ -24,9 +21,8 @@ public:
 
 inline std::ostream& operator<<(std::ostream& os, const Deck& deck) {
 	
-	for (const std::pair<int, int>& i : deck.theDeck)
+	for (const std::pair<int, int>& i : deck.deck)
 	{
-		std::cout << i.first << " " << i.second << std::endl;
-
+		return std::cout << i.first << " " << i.second << std::endl;
 	}
 }
