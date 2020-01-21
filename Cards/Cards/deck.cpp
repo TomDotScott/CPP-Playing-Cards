@@ -11,7 +11,7 @@ Deck::Deck() {
 void Deck::Build() {
 	int current = 0;
 	//the face
-	for (size_t face = 2; face < 15; ++face)
+	for (size_t face = 1; face < 13; ++face)
 	{
 		//the suit
 		for (size_t suit = 1; suit < 5; ++suit)
@@ -43,5 +43,12 @@ PlayingCard Deck::Deal() {
 		PlayingCard card = deck[next_card_to_deal];
 		next_card_to_deal += 1;
 		return card;
+	}
+}
+
+//Display the deck to the console
+void Deck::Display(){
+	for (PlayingCard &playingCard : deck) {
+		std::cout << playingCard << std::endl;
 	}
 }

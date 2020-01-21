@@ -14,6 +14,7 @@ public:
 	void Build();
 	void Shuffle();
 	PlayingCard Deal();
+	void Display();
 	friend std::ostream& operator <<(std::ostream& os, const Deck& deck);
 	Deck();
 	~Deck() {};
@@ -21,8 +22,8 @@ public:
 
 inline std::ostream& operator<<(std::ostream& os, const Deck& deck) {
 	
-	for (const std::pair<int, int>& i : deck.deck)
+	for (const PlayingCard& i : deck.deck)
 	{
-		return std::cout << i.first << " " << i.second << std::endl;
+		return std::cout << i << std::endl;
 	}
 }
