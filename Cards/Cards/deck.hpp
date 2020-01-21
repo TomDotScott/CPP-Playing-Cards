@@ -8,7 +8,7 @@ class Deck {
 private:
 	int total_playing_cards;
 	int next_card_to_deal = 0;
-	std::vector<std::pair<int, int>> deck;
+	PlayingCard deck[52];
 
 public:
 	void Build();
