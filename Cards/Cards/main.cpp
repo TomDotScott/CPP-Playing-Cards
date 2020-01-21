@@ -2,6 +2,7 @@
 #include <iostream>
 #include "deck.hpp"
 #include "time.h"
+#include "hand.h"
 
 int main()
 {
@@ -9,11 +10,16 @@ int main()
 
 	//create the deck
 	Deck deck;
-	//output standard deck
-	std::cout << deck << std::endl;
+	
+	//create the hand
+	Hand hand;
+
 	//shuffle the deck
 	deck.Shuffle();
-	//output shuffled deck
-
-	std::cout << deck << std::endl;
+	
+	for (int i = 0; i < 5; ++i) {
+		PlayingCard card = deck.Deal();
+		std::cout << card << std::endl;
+		hand.Add(card);
+	}
 }
