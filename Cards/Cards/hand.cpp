@@ -1,9 +1,5 @@
 #include "hand.h"
 
-Hand::Hand() {
-	return;
-}
-
 void Hand::Add(PlayingCard& playingCard) {
 	//check if hand is full
 	if (cards_in_hand != 5) {

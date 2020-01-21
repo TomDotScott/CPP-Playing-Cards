@@ -5,7 +5,7 @@ private:
 	PlayingCard cards[5];
 	int cards_in_hand = 0;
 public:
-	Hand();
+	Hand() = default;
 	void Add(PlayingCard& playingCard);
 	int Value();
 	void Display();

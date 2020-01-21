@@ -24,6 +24,6 @@ inline std::ostream& operator<<(std::ostream& os, const Deck& deck) {
 	
 	for (const PlayingCard& i : deck.deck)
 	{
-		return std::cout << i << std::endl;
+		return os << i << std::endl;
 	}
 }

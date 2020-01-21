@@ -43,16 +43,16 @@ inline std::ostream& operator<<(std::ostream& os, const PlayingCard& playingCard
 	switch (playingCard.suit)
 	{
 	case 1:
-		return std::cout << face_value << " OF SPADES"<< std::endl;
+		return os << face_value << " OF SPADES"<< std::endl;
 		break;
 	case 2:
-		return std::cout << face_value << " OF CLUBS" << std::endl;
+		return os << face_value << " OF CLUBS" << std::endl;
 		break;
 	case 3:
-		return std::cout << face_value << " OF DIAMONDS" << std::endl;
+		return os << face_value << " OF DIAMONDS" << std::endl;
 		break;
 	case 4:
-		return std::cout << face_value << " OF HEARTS" << std::endl;
+		return os << face_value << " OF HEARTS" << std::endl;
 		break;
 	default:
 		break;

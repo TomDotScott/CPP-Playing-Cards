@@ -10,16 +10,18 @@ int main()
 
 	//create the deck
 	Deck deck;
-	
+
 	//create the hand
 	Hand hand;
 
 	//shuffle the deck
 	deck.Shuffle();
-	
-	for (int i = 0; i < 5; ++i) {
+
+	deck.Display();
+
+	/*for (int i = 0; i < 5; ++i) {
 		PlayingCard card = deck.Deal();
 		std::cout << card << std::endl;
 		hand.Add(card);
-	}
+	}*/
 }

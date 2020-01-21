@@ -11,10 +11,10 @@ Deck::Deck() {
 void Deck::Build() {
 	int current = 0;
 	//the face
-	for (size_t face = 1; face < 13; ++face)
+	for (int face = 1; face < 13; ++face)
 	{
 		//the suit
-		for (size_t suit = 1; suit < 5; ++suit)
+		for (int suit = 1; suit < 5; ++suit)
 		{
 			deck[current] = PlayingCard(face, suit);
 			current++;
