@@ -19,9 +19,10 @@ int main()
 
 	for (int i = 0; i < 5; ++i) {
 		PlayingCard card = deck.Deal();
-		std::cout << card << std::endl;
 		hand.Add(card);
 	}
+
+	hand.Display();
 
 	std::cout << hand.Value() << std::endl;
 }

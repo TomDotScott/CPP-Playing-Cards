@@ -17,5 +17,7 @@ int Hand::Value() {
 }
 
 void Hand::Display() {
-
+	for (PlayingCard& playingCard : cards) {
+		std::cout << playingCard << std::endl;
+	}
 }
