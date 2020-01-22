@@ -12,7 +12,11 @@ private:
 	
 	//the deck of cards
 	Deck deck;
+
+	//print the value of everyoen who is still in the game's cards
+	void DisplayCards();
 public:
 	Game();
+	void Play();
 };
 

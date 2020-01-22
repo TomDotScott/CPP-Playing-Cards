@@ -37,3 +37,18 @@ Game::Game() {
 	std::cout << players.size() << std::endl;
 }
 
+void Game::Play() {
+	//Tell the players the value of their hands
+	DisplayCards();
+}
+
+void Game::DisplayCards() {
+	for (int i = 0; i < players.size(); ++i) {
+		std::cout << "PLAYER " << i + 1 << std::endl;
+		//only output if the player is still in the game
+		if (players[i].second == true) {
+			//Display the cards in each player's hands
+			players[i].first.Display();
+		}
+	}
+}
