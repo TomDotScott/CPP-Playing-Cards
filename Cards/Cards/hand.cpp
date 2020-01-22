@@ -1,8 +1,13 @@
 #include "hand.h"
 
 void Hand::Add(PlayingCard& playingCard) {
+	cards.push_back(playingCard);
+	++cards_in_hand;
+}
+
+void Hand::Add(PlayingCard& playingCard, int limit) {
 	//check if hand is full
-	if (cards_in_hand != 5) {
+	if (cards_in_hand != limit) {
 		cards[cards_in_hand] = playingCard;
 		++cards_in_hand;
 	}
@@ -21,6 +26,4 @@ void Hand::Display() {
 	for (PlayingCard& playingCard : cards) {
 		std::cout << playingCard << std::endl;
 	}
-
-	std::cout << "IN YOUR HAND";
 }
