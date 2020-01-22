@@ -21,11 +21,9 @@ public:
 };
 
 inline std::ostream& operator<<(std::ostream& os, const Deck& deck) {
-	
 	for (const PlayingCard& i : deck.deck)
 	{
 		os << i << std::endl;
 	}
-
 	return os;
 }
