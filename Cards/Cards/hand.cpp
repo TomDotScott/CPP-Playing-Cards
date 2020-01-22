@@ -9,7 +9,11 @@ void Hand::Add(PlayingCard& playingCard) {
 }
 
 int Hand::Value() {
-	return 1;
+	int total{ 0 };
+	for (PlayingCard& playingCard : cards) {
+		total += playingCard.GetFaceValue();
+	}
+	return total;
 }
 
 void Hand::Display() {

@@ -17,11 +17,11 @@ int main()
 	//shuffle the deck
 	deck.Shuffle();
 
-	deck.Display();
-
-	/*for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < 5; ++i) {
 		PlayingCard card = deck.Deal();
 		std::cout << card << std::endl;
 		hand.Add(card);
-	}*/
+	}
+
+	std::cout << hand.Value() << std::endl;
 }
