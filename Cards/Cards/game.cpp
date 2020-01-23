@@ -34,11 +34,24 @@ Game::Game() {
 		player.second = true;
 		players.push_back(player);
 	}
+
+	alivePlayers = players.size();
 }
 
 void Game::Play() {
-	//Tell the players the value of their hands
-	DisplayCards();
+	while (gameWon != true) {
+		//Tell the players the value of their hands
+		DisplayCards();
+		//Ask the plyers whether they would like to HIT or PASS
+		//if player 1 is still playing
+		if (players[0].second == true) {
+
+		}
+
+
+		//next player's turn
+		IncrementPlayer();
+	}
 }
 
 void Game::DisplayCards() {
@@ -52,4 +65,9 @@ void Game::DisplayCards() {
 		}
 		std::cout << "WITH A VALUE OF " << players[i].first.Value() << std::endl;
 	}
+}
+
+void Game::IncrementPlayer() {
+	//if it is the last players' turn
+	if(turn == )
 }
