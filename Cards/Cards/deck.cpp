@@ -25,11 +25,13 @@ void Deck::Build() {
 //shuffles the cards using the Fisher-Yates Shuffle algorithm 
 //https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 void Deck::Shuffle() {
-	for (int i = 51; i > 1; i--) {
-		int random = rand() % 51 + 1;
-		PlayingCard temp = deck[i];
-		deck[i] = deck[random];
-		deck[random] = temp;
+	for (int i = 51; i >= 1; --i) {
+		int random = rand() % (i + 1);
+		if (random != i) {
+			PlayingCard temp = deck[i];
+			deck[i] = deck[random];
+			deck[random] = temp;
+		}
 	}
 }
 
