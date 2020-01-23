@@ -37,15 +37,14 @@ void Deck::Shuffle() {
 
 //deals the next card form the deck
 PlayingCard Deck::Deal() {
-	if (next_card_to_deal > 52 - 1) {
-		std::cout << "DECK HAS BEEN FULLY DEALT";
-		return PlayingCard(0, 0);
+	next_card_to_deal++;
+	//Shuffle and Cycle the deck
+	if (next_card_to_deal > 51) {
+		Shuffle();
+		next_card_to_deal = 0;
 	}
-	else {
-		PlayingCard card = deck[next_card_to_deal];
-		next_card_to_deal += 1;
-		return card;
-	}
+	PlayingCard card = deck[next_card_to_deal];
+	return card;
 }
 
 //Display the deck to the console
