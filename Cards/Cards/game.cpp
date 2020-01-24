@@ -69,5 +69,10 @@ void Game::DisplayCards() {
 
 void Game::IncrementPlayer() {
 	//if it is the last players' turn
-	if(turn == )
+	if (turn == players.size()) {
+		turn = 0;
+	}
+	else {
+		++turn;
+	}
 }
