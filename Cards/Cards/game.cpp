@@ -43,12 +43,15 @@ void Game::Play() {
 		//Tell the players the value of their hands
 		DisplayCards();
 		//Ask the plyers whether they would like to HIT or PASS
-		//if player 1 is still playing
-		if (players[0].second == true) {
-			PlayersTurn();
+		if (turn == 0) {
+			//if player 1 is still playing
+			if (players[0].second == true) {
+				PlayersTurn();
+			}
 		}
-
-
+		else {
+			ComputersTurn();
+		}
 		//next player's turn
 		IncrementPlayer();
 	}
@@ -96,7 +99,7 @@ void Game::PlayersTurn() {
 			//display the Player's cards
 			DisplayCards(0);
 			break;
-		case2:
+		case 2:
 			stillTurn = false;
 		default:
 			break;
@@ -123,3 +126,8 @@ int Game::PlayerHitOrPass() {
 	} while (!validInput);
 	return hitOrPass;
 }
+
+void Game::ComputersTurn() {
+
+}
+
