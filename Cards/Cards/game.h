@@ -25,6 +25,9 @@ private:
 	//print the value of everyoen who is still in the game's cards
 	void DisplayCards();
 
+	//print the value of a specific player's cards
+	void DisplayCards(int playerNumber);
+
 	//A method to deal with it being the Player's Turn
 	void PlayersTurn();
 

@@ -67,6 +67,11 @@ void Game::DisplayCards() {
 	}
 }
 
+void Game::DisplayCards(int playerNumber) {
+	players[playerNumber].first.Display();
+	std::cout << "WITH A VALUE OF " << players[playerNumber].first.Value() << std::endl;
+}
+
 void Game::IncrementPlayer() {
 	//if it is the last players' turn
 	if (turn == players.size()) {
@@ -78,8 +83,25 @@ void Game::IncrementPlayer() {
 }
 
 void Game::PlayersTurn() {
-	int hitOrPass = PlayerHitOrPass();
-	
+	bool stillTurn = true;
+	do {
+		int hitOrPass = PlayerHitOrPass();
+		switch (hitOrPass)
+		{
+			//if a hit
+		case 1:
+			//deal a card to the player
+			PlayingCard nextCard = deck.Deal();
+			players[0].first.Add(nextCard);
+			//display the Player's cards
+			DisplayCards(0);
+			break;
+		case2:
+			stillTurn = false;
+		default:
+			break;
+		}
+	} while (stillTurn);
 }
 
 int Game::PlayerHitOrPass() {
