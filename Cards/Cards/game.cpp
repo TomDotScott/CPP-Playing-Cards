@@ -73,14 +73,19 @@ void Game::IncrementPlayer() {
 		turn = 0;
 	}
 	else {
-		++turn;
+		turn++;
 	}
 }
 
 void Game::PlayersTurn() {
+	int hitOrPass = PlayerHitOrPass();
+	
+}
+
+int Game::PlayerHitOrPass() {
 	bool validInput = true;
+	int hitOrPass;
 	do {
-		int hitOrPass;
 		std::cout << "Would you like to HIT (1) or PASS (2)?" << std::endl;
 		std::cin >> hitOrPass;
 		//input validation
@@ -94,4 +99,5 @@ void Game::PlayersTurn() {
 			validInput = true;
 		}
 	} while (!validInput);
+	return hitOrPass;
 }

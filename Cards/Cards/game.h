@@ -28,8 +28,14 @@ private:
 	//A method to deal with it being the Player's Turn
 	void PlayersTurn();
 
+	//returns 1 for hit or 2 for pass
+	int PlayerHitOrPass();
+
 	//A method to deal wiht it being the computers' turn
 	void ComputersTurn();
+
+	//returns 1 for hit or 2 for pass
+	int ComputerHitOrPass();
 
 	//increment whose turn it is
 	void IncrementPlayer();
