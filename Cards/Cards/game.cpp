@@ -17,25 +17,39 @@
 
 -------------------------------------------------------------------------*/
 
-//initialise the game by creating the player vector
+//initialise the game by creating the computer vector and handing out cards to the players
 Game::Game() {
 	deck.Shuffle();
-	//create the hands of the players
+
+	//add to the player's hand
 	for (int i = 0; i < 2; i++)
 	{
-		Hand playerHand;
-		for(int j = 0; j < 2; j++)
-		{
-			PlayingCard nextCard = deck.Deal();
-			playerHand.Add(nextCard);
-		}
-		std::pair<Hand, bool> player;
-		player.first = playerHand;
-		player.second = true;
-		players.push_back(player);
+		PlayingCard nextCard = deck.Deal();
+		player.hand.Add(nextCard);
 	}
 
-	alivePlayers = players.size();
+	GenerateComputers();
+
+	//account for the user as well
+	alivePlayers = computers.size() + 1;
+}
+
+void Game::GenerateComputers()
+{
+	//create the hands of the computers
+	for (int i = 0; i < 2; i++)
+	{
+		Hand computerHand;
+		for (int j = 0; j < 2; j++)
+		{
+			PlayingCard nextCard = deck.Deal();
+			computerHand.Add(nextCard);
+		}
+		std::pair<Hand, bool> computer;
+		computer.first = computerHand;
+		computer.second = true;
+		computers.push_back(computer);
+	}
 }
 
 void Game::Play() {
@@ -45,7 +59,7 @@ void Game::Play() {
 		//Ask the plyers whether they would like to HIT or PASS
 		if (turn == 0) {
 			//if player 1 is still playing
-			if (players[0].second == true) {
+			if (player.GetLiveStatus() == true) {
 				PlayersTurn();
 			}
 		}
@@ -58,26 +72,29 @@ void Game::Play() {
 }
 
 void Game::DisplayCards() {
-	for (int i = 0; i < players.size(); ++i) {
-		std::cout << "PLAYER " << i + 1 << " ";
+	player.hand.Display();
+	std::cout << "WITH A VALUE OF " << player.hand.Value() << std::endl;
+
+	for (int i = 0; i < computers.size(); ++i) {
+		std::cout << "CPU " << i + 1 << ", ";
 		int playerTotal{ 0 };
-		//only output if the player is still in the game
-		if (players[i].second == true) {
-			//Display the cards in each player's hands
-			players[i].first.Display();
+		//only output if the computer is still in the game
+		if (computers[i].second == true) {
+			//Display the cards in each computers' hands
+			computers[i].first.Display();
 		}
-		std::cout << "WITH A VALUE OF " << players[i].first.Value() << std::endl;
+		std::cout << "WITH A VALUE OF " << computers[i].first.Value() << std::endl;
 	}
 }
 
 void Game::DisplayCards(int playerNumber) {
-	players[playerNumber].first.Display();
-	std::cout << "WITH A VALUE OF " << players[playerNumber].first.Value() << std::endl;
+	computers[playerNumber].first.Display();
+	std::cout << "WITH A VALUE OF " << computers[playerNumber].first.Value() << std::endl;
 }
 
 void Game::IncrementPlayer() {
 	//if it is the last players' turn
-	if (turn == players.size()) {
+	if (turn == computers.size() + 1) {
 		turn = 0;
 	}
 	else {
@@ -95,9 +112,11 @@ void Game::PlayersTurn() {
 		case 1:
 			//deal a card to the player
 			PlayingCard nextCard = deck.Deal();
-			players[0].first.Add(nextCard);
+			player.hand.Add(nextCard);
 			//display the Player's cards
-			DisplayCards(0);
+			player.hand.Display();
+			std::cout << "WITH A VALUE OF " << player.hand.Value() << std::endl;
+
 			break;
 		case 2:
 			stillTurn = false;

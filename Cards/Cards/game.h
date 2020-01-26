@@ -2,13 +2,16 @@
 #include "deck.hpp"
 #include "playing_card.hpp"
 #include "hand.h"
+#include "player.h"
 
 class Game
 {
 private:
 	//store all of the players in the game and whether they are still in or not
-	//USER IS PLAYER 1 (INDEX 0)
-	std::vector<std::pair<Hand, bool>> players;
+	Player player;
+
+	//each of the bots in the game
+	std::vector<std::pair<Hand, bool>> computers;
 	
 	//the deck of cards
 	Deck deck;
@@ -42,6 +45,9 @@ private:
 
 	//increment whose turn it is
 	void IncrementPlayer();
+
+	//Populate the computers vector
+	void GenerateComputers();
 
 public:
 	Game();
