@@ -45,7 +45,7 @@ void Game::Play() {
 		//Ask the plyers whether they would like to HIT or PASS
 		//if player 1 is still playing
 		if (players[0].second == true) {
-
+			PlayersTurn();
 		}
 
 
@@ -75,4 +75,8 @@ void Game::IncrementPlayer() {
 	else {
 		++turn;
 	}
+}
+
+void Game::PlayersTurn() {
+
 }
