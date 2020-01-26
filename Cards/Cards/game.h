@@ -25,6 +25,12 @@ private:
 	//print the value of everyoen who is still in the game's cards
 	void DisplayCards();
 
+	//A method to deal with it being the Player's Turn
+	void PlayersTurn();
+
+	//A method to deal wiht it being the computers' turn
+	void ComputersTurn();
+
 	//increment whose turn it is
 	void IncrementPlayer();
 

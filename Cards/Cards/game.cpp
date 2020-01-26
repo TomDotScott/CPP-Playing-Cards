@@ -78,5 +78,20 @@ void Game::IncrementPlayer() {
 }
 
 void Game::PlayersTurn() {
-
+	bool validInput = true;
+	do {
+		int hitOrPass;
+		std::cout << "Would you like to HIT (1) or PASS (2)?" << std::endl;
+		std::cin >> hitOrPass;
+		//input validation
+		if (!std::cin.good() || hitOrPass > 2 || hitOrPass < 1) {
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "A valid input is 1 or 2" << std::endl;
+			validInput = false;
+		}
+		else {
+			validInput = true;
+		}
+	} while (!validInput);
 }
