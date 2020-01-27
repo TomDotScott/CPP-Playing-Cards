@@ -10,6 +10,9 @@ public:
 	Hand() = default;
 	void Add(PlayingCard& playingCard);
 	void Add(PlayingCard& playingCard, int limit);
+	PlayingCard GetDealerUpCard() {
+		return cards[cards.size() - 1];
+	}
 	int Value();
 	void Display();
 };
