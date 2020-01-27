@@ -2,14 +2,14 @@
 /*------------------------TODO---------------------------------------------
 
   -ACE can be 1 or 11                                                           
-  -JACK, QUEEN and KING are 10 points                                           
-  -the CARDS are SHUFFLED                                                       
-  -each player is DEALT 2 CARDS                                                  
-  -the player is told the VALUE of their HAND                                     
-  -players decide whether to HIT or PASS                                              
-  -if HIT, the player has another CARD in their HAND                                  
-  -their total is told to them      
-  -players can be hit ONCE per round 
+  -JACK, QUEEN and KING are 10 points DONE                                           
+  -the CARDS are SHUFFLED                  DONE                                      
+  -each player is DEALT 2 CARDS                DONE                                  
+  -the player is told the VALUE of their HAND      DONE                               
+  -players decide whether to HIT or PASS               DONE                               
+  -if HIT, the player has another CARD in their HAND       DONE                           
+  -their total is told to them      DONE
+  -players can be hit ONCE per round
   -if their new total is MORE THAN 21, they LOSE and are out of the game
   -once the players have all chosen to HIT or PASS, the DECK is SHUFFLED again       
   -when everyone has decided to PASS, their totals are worked out
@@ -60,12 +60,13 @@ void Game::Play() {
 		if (turn == 0) {
 			//if player 1 is still playing
 			if (player.GetLiveStatus() == true) {
-				PlayersTurn();
+				player.TakeTurn(deck);
 			}
 		}
 		else {
 			ComputersTurn();
 		}
+		IncrementPlayer();
 	}
 }
 
@@ -100,54 +101,6 @@ void Game::IncrementPlayer() {
 	}
 }
 
-void Game::PlayersTurn() {
-	std::cout << "PLAYER 1" << std::endl;
-	bool stillTurn = true;
-	do {
-		int hitOrPass = PlayerHitOrPass();
-		switch (hitOrPass)
-		{
-			//if a hit
-		case 1:
-			//deal a card to the player
-			PlayingCard nextCard = deck.Deal();
-			player.hand.Add(nextCard);
-			//display the Player's cards
-			player.hand.Display();
-			std::cout << "WITH A VALUE OF " << player.hand.Value() << std::endl;
-
-			break;
-		case 2:
-			stillTurn = false;
-			break;
-		default:
-			break;
-		}
-	} while (stillTurn);
-	//next player's turn
-	IncrementPlayer();
-}
-
-int Game::PlayerHitOrPass() {
-	bool validInput = true;
-	int hitOrPass;
-	do {
-		std::cout << "Would you like to HIT (1) or PASS (2)?" << std::endl;
-		std::cin >> hitOrPass;
-		//input validation
-		if (!std::cin.good() || hitOrPass > 2 || hitOrPass < 1) {
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "A valid input is 1 or 2" << std::endl;
-			validInput = false;
-		}
-		else {
-			validInput = true;
-		}
-	} while (!validInput);
-	return hitOrPass;
-}
-
 void Game::ComputersTurn() {
 	//go through all of the CPUs 
 	for (std::pair<Hand, bool>& CPU : computers)
@@ -159,12 +112,108 @@ void Game::ComputersTurn() {
 			//SORT OF STRATEGY. FOR NOW, I AM 
 			//GOING TO KEEP IT RANDOM
 			//--------------------------------
-
-
+			
 			//decide to hit or pass
 			bool stillTurn = true;
+			
 			do {
+				/*
+				int hitOrPass{ 0 };
+
+				//strategy from https://www.pagat.com/images/banking/bjbasic.jpg
+				switch (CPU.first.Value)
+				{
+				case 5:
+					hitOrPass = 1;
+					break;
+				case 6:
+					hitOrPass = 1;
+					break;
+				case 7:
+					hitOrPass = 1;
+					break;
+				case 8:
+					hitOrPass = 1;
+					break;
+				case 9:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() == 2) {
+						hitOrPass = 1;
+					}
+					else if (CPU.first.GetDealerUpCard().GetFaceValue() == 3 || CPU.first.GetDealerUpCard().GetFaceValue() == 4 || CPU.first.GetDealerUpCard().GetFaceValue() == 5 || 
+						CPU.first.GetDealerUpCard().GetFaceValue() == 6) {
+						hitOrPass = rand() % 2 + 1;
+					}
+					else {
+						hitOrPass = 1;
+					}
+					break;
+				case 10:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() <= 9) {
+						hitOrPass = rand() % 2 + 1;
+					}
+					else {
+						hitOrPass = 1;
+					}
+					break;
+				case 11:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() <= 10) {
+						hitOrPass = rand() % 2 + 1;
+					}
+					else {
+						hitOrPass = 1;
+					}
+					break;
+				case 12:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() == 2 || CPU.first.GetDealerUpCard().GetFaceValue() == 3) {
+						hitOrPass = 1;
+					}
+					else if (CPU.first.GetDealerUpCard().GetFaceValue() == 4 || CPU.first.GetDealerUpCard().GetFaceValue() == 5 || CPU.first.GetDealerUpCard().GetFaceValue() == 6) {
+						hitOrPass = 0;
+					}
+					else {
+						hitOrPass = rand() % 2 + 1;
+					}
+					break;
+				case 13:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() <= 6) {
+						hitOrPass = 0;
+					}
+					else {
+						hitOrPass = rand() % 2 + 1;
+					}
+					break;
+
+				case 14:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() <= 6) {
+						hitOrPass = 0;
+					}
+					else {
+						hitOrPass = rand() % 2 + 1;
+					}
+					break;
+				case 15:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() <= 6) {
+						hitOrPass = 0;
+					}
+					else {
+						hitOrPass = rand() % 2 + 1;
+					}
+					break;
+				case 16:
+					if (CPU.first.GetDealerUpCard().GetFaceValue() <= 6) {
+						hitOrPass = 0;
+					}
+					else {
+						hitOrPass = rand() % 2 + 1;
+					}
+					break;
+				default:
+					break;
+				}
+				*/
+
 				int hitOrPass = rand() % 2 + 1;
+
 				switch (hitOrPass)
 				{
 				case 1:
