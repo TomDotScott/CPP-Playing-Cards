@@ -37,7 +37,7 @@ Game::Game() {
 void Game::GenerateComputers()
 {
 	//create the hands of the computers
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		Hand computerHand;
 		for (int j = 0; j < 2; j++)
@@ -66,8 +66,6 @@ void Game::Play() {
 		else {
 			ComputersTurn();
 		}
-		//next player's turn
-		IncrementPlayer();
 	}
 }
 
@@ -83,13 +81,13 @@ void Game::DisplayCards() {
 			//Display the cards in each computers' hands
 			computers[i].first.Display();
 		}
-		std::cout << "WITH A VALUE OF " << computers[i].first.Value() << std::endl;
+		std::cout << "WITH A VALUE OF " << computers[i].first.Value() << std::endl << std::endl;
 	}
 }
 
 void Game::DisplayCards(int playerNumber) {
 	computers[playerNumber].first.Display();
-	std::cout << "WITH A VALUE OF " << computers[playerNumber].first.Value() << std::endl;
+	std::cout << "WITH A VALUE OF " << computers[playerNumber].first.Value() << std::endl << std::endl;
 }
 
 void Game::IncrementPlayer() {
@@ -103,6 +101,7 @@ void Game::IncrementPlayer() {
 }
 
 void Game::PlayersTurn() {
+	std::cout << "PLAYER 1" << std::endl;
 	bool stillTurn = true;
 	do {
 		int hitOrPass = PlayerHitOrPass();
@@ -120,10 +119,13 @@ void Game::PlayersTurn() {
 			break;
 		case 2:
 			stillTurn = false;
+			break;
 		default:
 			break;
 		}
 	} while (stillTurn);
+	//next player's turn
+	IncrementPlayer();
 }
 
 int Game::PlayerHitOrPass() {
@@ -147,6 +149,36 @@ int Game::PlayerHitOrPass() {
 }
 
 void Game::ComputersTurn() {
+	//go through all of the CPUs 
+	for (std::pair<Hand, bool>& CPU : computers)
+	{
+		//if they are still alive
+		if (CPU.second == true) {
+			//------------TODO----------------
+			//MAKE THE CPUs IMPLEMENT SOME 
+			//SORT OF STRATEGY. FOR NOW, I AM 
+			//GOING TO KEEP IT RANDOM
+			//--------------------------------
 
+
+			//decide to hit or pass
+			bool stillTurn = true;
+			do {
+				int hitOrPass = rand() % 2 + 1;
+				switch (hitOrPass)
+				{
+				case 1:
+					PlayingCard nextCard = deck.Deal();
+					CPU.first.Add(nextCard);
+					break;
+				case 2:
+					stillTurn = false;
+				default:
+					break;
+				}
+			} while (stillTurn);
+		}
+		IncrementPlayer();
+	}
 }
 
